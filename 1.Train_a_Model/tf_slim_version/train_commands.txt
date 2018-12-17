@@ -1,0 +1,293 @@
+
+
+
+
+to continue:
+cd ~/shenzhi/image_classification/tensorflow_models/research/slim
+
+
+################################################################################
+################################  Inception V3  ################################
+################################################################################
+
+###
+### the  """flowers"""  dataset
+###
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/flowers/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/flowers/
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/inception_v3.ckpt
+MODEL_NAME=inception_v3
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=flowers   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --save_interval_secs=300   --checkpoint_exclude_scopes=InceptionV3/Logits,InceptionV3/AuxLogits   --trainable_scopes=InceptionV3/Logits,InceptionV3/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/flowers/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/flowers/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/flowers/model.ckpt-2211
+MODEL_NAME=inception_v3
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=flowers   --dataset_split_name=validation   --model_name=${MODEL_NAME}
+
+
+### convert flowers
+
+DATA_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/flowers
+python convert_existing_img_folder.py   --dataset_name=flowers   --dataset_dir="${DATA_DIR}"
+
+
+
+
+# =========================
+
+
+
+
+###
+### the  """cifar10"""  dataset
+###
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/cifar10/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/cifar10/
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/inception_v3.ckpt
+MODEL_NAME=inception_v3
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=cifar10   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --save_interval_secs=300   --checkpoint_exclude_scopes=InceptionV3/Logits,InceptionV3/AuxLogits   --trainable_scopes=InceptionV3/Logits,InceptionV3/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/cifar10/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/cifar10/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/cifar10/model.ckpt-0
+MODEL_NAME=inception_v3
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=cifar10   --dataset_split_name=test   --model_name=${MODEL_NAME}
+
+
+### download & convert cifar10
+
+DATA_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/flowers
+python convert_existing_img_folder.py   --dataset_name=flowers   --dataset_dir="${DATA_DIR}"
+
+
+
+
+# =========================
+
+
+
+
+###
+### train with   """taobao_augmented_downsized"""   dataset
+###
+
+eval/Accuracy[0.754285693]
+eval/Recall_5[0.968571424]
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_augmented_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/taobao_augmented_downsized
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/inception_v3.ckpt
+MODEL_NAME=inception_v3
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --checkpoint_exclude_scopes=InceptionV3/Logits,InceptionV3/AuxLogits   --trainable_scopes=InceptionV3/Logits,InceptionV3/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_augmented_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/taobao_augmented_downsized/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/taobao_augmented_downsized/model.ckpt-9750
+MODEL_NAME=inception_v3
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=validation   --model_name=${MODEL_NAME}
+
+
+### convert taobao_augmented_downsized
+
+DATA_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_augmented_downsized/
+python convert_existing_img_folder.py   --dataset_name=taobao   --dataset_dir="${DATA_DIR}"
+
+
+
+
+# =========================
+
+
+
+
+###
+### train with   """taobao_downsized"""   dataset
+###
+
+eval/Accuracy[0.917142868]
+eval/Recall_5[0.997142851]
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/taobao_downsized
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/inception_v3.ckpt
+MODEL_NAME=inception_v3
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --checkpoint_exclude_scopes=InceptionV3/Logits,InceptionV3/AuxLogits   --trainable_scopes=InceptionV3/Logits,InceptionV3/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/taobao_downsized/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v3/tensorboard_logdir/taobao_downsized/model.ckpt-8284
+MODEL_NAME=inception_v3
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=validation   --model_name=${MODEL_NAME}
+
+
+### convert taobao_downsized
+
+DATA_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_downsized/
+python convert_existing_img_folder.py   --dataset_name=taobao   --dataset_dir="${DATA_DIR}"
+
+
+
+
+# =========================
+
+
+
+
+
+################################################################################
+################################  Inception V4  ################################
+################################################################################
+
+
+
+
+###
+### train with   """taobao_augmented_downsized"""   dataset
+###
+
+eval/Accuracy[0.685714304]
+eval/Recall_5[0.95714283]
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_augmented_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/tensorboard_logdir/taobao_augmented_downsized
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/inception_v4.ckpt
+MODEL_NAME=inception_v4
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --checkpoint_exclude_scopes=InceptionV4/Logits,InceptionV4/AuxLogits   --trainable_scopes=InceptionV4/Logits,InceptionV4/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_augmented_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/tensorboard_logdir/taobao_augmented_downsized/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/tensorboard_logdir/taobao_augmented_downsized/model.ckpt-10031
+MODEL_NAME=inception_v4
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=validation   --model_name=${MODEL_NAME}
+
+
+
+
+# =========================
+
+
+
+
+###
+### train with   """taobao_downsized"""   dataset
+###
+
+eval/Accuracy[0.897142828]
+eval/Recall_5[0.994285703]
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/tensorboard_logdir/taobao_downsized
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/inception_v4.ckpt
+MODEL_NAME=inception_v4
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --checkpoint_exclude_scopes=InceptionV4/Logits,InceptionV4/AuxLogits   --trainable_scopes=InceptionV4/Logits,InceptionV4/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/taobao_downsized/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/tensorboard_logdir/taobao_downsized/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/inception_v4/tensorboard_logdir/taobao_downsized/model.ckpt-9949
+MODEL_NAME=inception_v4
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=taobao   --dataset_split_name=validation   --model_name=${MODEL_NAME}
+
+
+#################################################################################
+#####################################  VGG  #####################################
+#################################################################################
+
+###
+### the  """flowers"""  dataset
+###
+
+### training
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/flowers/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/vgg/tensorboard_logdir/flowers/
+BOTTLENECK_PATH=/home/adam/shenzhi/image_classification/experiments/tf_finetune/vgg/vgg_16.ckpt
+MODEL_NAME=vgg_16
+SAVE_SUMMARIES_SECS=10
+
+python train_image_classifier.py   --train_dir=${TRAIN_DIR}   --dataset_dir=${DATASET_DIR}   --dataset_name=flowers   --dataset_split_name=train   --model_name=${MODEL_NAME}   --checkpoint_path=${BOTTLENECK_PATH}   --save_summaries_secs=${SAVE_SUMMARIES_SECS}   --save_interval_secs=300   --checkpoint_exclude_scopes=InceptionV3/Logits,InceptionV3/AuxLogits   --trainable_scopes=InceptionV3/Logits,InceptionV3/AuxLogits
+
+
+### Evaluating
+
+DATASET_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/data/flowers/
+TRAIN_DIR=/home/adam/shenzhi/image_classification/experiments/tf_finetune/vgg/tensorboard_logdir/flowers/
+CHECKPOINT_FILE=/home/adam/shenzhi/image_classification/experiments/tf_finetune/vgg/vgg_16.ckpt
+MODEL_NAME=vgg_16
+
+python eval_image_classifier.py   --checkpoint_path=${CHECKPOINT_FILE}   --dataset_dir=${DATASET_DIR}   --dataset_name=flowers   --dataset_split_name=validation   --model_name=${MODEL_NAME}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
